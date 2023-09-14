@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bd_board.mapper.BoardMapper">
+
+    <select id="selectAll" resultType="com.example.bd_board.model.Board">
+        SELECT *
+        FROM board
+    </select>
+
+    <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
+        INSERT INTO board (title, contents, member_id)
+        VALUES (#{title}, #{contents}, #{member_id})
+    </insert>
+
+    <update id="updateBoard" parameterType="map">
+        UPDATE board
+        SET title = #{param1}, contents = #{param2}, member_id = #{param3}
+        WHERE no = #{no}
+    </update>
+
+    <delete id="deleteBoard" parameterType="com.example.bd_board.model.Board">
+        DELETE
+        FROM board
+        WHERE no = #{no}
+    </delete>
+</mapper>
