@@ -13,4 +13,6 @@ public class Board {
     private String contents;
     private String title;
 
+    private String type;
+    private String keyword;
 }
