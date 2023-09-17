@@ -6,23 +6,36 @@
 
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
         SELECT *
-        FROM board
+        FROM board_db
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board (title, contents, member_id)
+        INSERT INTO board_db (title, contents, member_id)
         VALUES (#{title}, #{contents}, #{member_id})
     </insert>
 
     <update id="updateBoard" parameterType="map">
-        UPDATE board
+        UPDATE board_db
         SET title = #{param1}, contents = #{param2}, member_id = #{param3}
         WHERE no = #{no}
     </update>
 
     <delete id="deleteBoard" parameterType="com.example.bd_board.model.Board">
         DELETE
-        FROM board
+        FROM board_db
         WHERE no = #{no}
     </delete>
+
+    <select id="searchBoard" resultType="com.example.bd_board.model.Board">
+        <choose>
+            <when test="type =='title'">
+                SELECT * FROM board_db
+                WHERE title LIKE CONCAT('%',#{keyword},'%')
+            </when>
+            <when test="type =='member_id'">
+                SELECT * FROM board_db
+                WHERE member_id LIKE CONCAT('%',#{keyword},'%')
+            </when>
+        </choose>
+    </select>
 </mapper>

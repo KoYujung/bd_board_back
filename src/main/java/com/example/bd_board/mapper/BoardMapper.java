@@ -22,4 +22,20 @@ public interface BoardMapper {
 
     @Delete("DELETE from board_db WHERE no = #{no}")
     int deleteBoardByNo(Integer no);
+
+    @Select({
+            "<choose>",
+            "<when test='type == \"title\"'>",
+            "SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%')",
+            "</when>",
+            "<when test='type == \"member_id\"'>",
+            "SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%')",
+            "</when>",
+            "<otherwise>",
+            "SELECT null",
+            "</otherwise>",
+            "</choose>"
+    })
+    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+
 }

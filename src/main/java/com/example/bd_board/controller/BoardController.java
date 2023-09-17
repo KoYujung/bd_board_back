@@ -47,4 +47,9 @@ public class BoardController {
     public int deleteBoardByNo(@PathVariable Integer no) {
         return boardService.deleteBoard(no);
     }
+
+    @GetMapping("/search_board/{type}/{keyword}")
+    public List<Board> searchBoard(@PathVariable String type, @PathVariable String keyword) {
+        return boardService.searchBoard(type,keyword);
+    }
 }

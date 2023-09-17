@@ -35,5 +35,9 @@ public class BoardService {
         return boardMapper.deleteBoardByNo(no);
     }
 
+    public List<Board> searchBoard(String type, String keyword) {
+        return boardMapper.searchBoard(type, keyword);
+    }
+
 }
 
