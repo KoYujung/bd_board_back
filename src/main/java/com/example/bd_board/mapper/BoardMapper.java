@@ -23,22 +23,24 @@ public interface BoardMapper {
     @Delete("DELETE from board_db WHERE no = #{no}")
     int deleteBoardByNo(Integer no);
 
-//    @Select("SELECT * FROM board_db WHERE title LIKE CONCAT('%',#{keyword}, '%')")
-//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
-//    @Select("SELECT * FROM board_db WHERE member_id LIKE CONCAT('%',#{keyword}, '%')")
-//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+    @Select("SELECT * FROM board_db WHERE title LIKE CONCAT('%',#{keyword}, '%')")
+    List<Board> searchBoardT(@Param("type") String type, @Param("keyword") String keyword);
 
-    @Select(
-            "SELECT * FROM board_db" +
-            "<where>" +
-            "<if test='type == \"title\"'>" +
-            "AND title LIKE CONCAT('%', #{keyword}, '%')" +
-            "</if>" +
-            "<if test='type == \"member_id\"'>" +
-            "AND member_id LIKE CONCAT('%', #{keyword}, '%')" +
-            "</if>" +
-            "</where>"
-    )
-    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+    @Select("SELECT * FROM board_db WHERE member_id LIKE CONCAT('%',#{keyword}, '%')")
+    List<Board> searchBoardM(@Param("type") String type, @Param("keyword") String keyword);
+
+
+//    @Select(
+//            "SELECT * FROM board_db" +
+//            "<where>" +
+//            "<if test='type == \"title\"'>" +
+//            "AND title LIKE CONCAT('%', #{keyword}, '%')" +
+//            "</if>" +
+//            "<if test='type == \"member_id\"'>" +
+//            "AND member_id LIKE CONCAT('%', #{keyword}, '%')" +
+//            "</if>" +
+//            "</where>"
+//    )
+//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
 
 }

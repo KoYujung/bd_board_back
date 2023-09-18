@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BoardService {
@@ -36,7 +37,10 @@ public class BoardService {
     }
 
     public List<Board> searchBoard(String type, String keyword) {
-        return boardMapper.searchBoard(type, keyword);
+        if(Objects.equals(type, "title")) {
+            return boardMapper.searchBoardT(type,keyword);
+        }
+        else return boardMapper.searchBoardM(type,keyword);
     }
 
 }
