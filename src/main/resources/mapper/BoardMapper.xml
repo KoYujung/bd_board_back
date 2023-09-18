@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.example.bd_board.mapper.BoardMapper">
 
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
@@ -26,11 +27,7 @@
         WHERE no = #{no}
     </delete>
 
-    <select id="searchtitle" resultType="com.example.bd_board.model.Board" parameterType="com.example.bd_board.model.Board">
-
-    </select>
-
-    <select id="searchBoard" resultType="com.example.bd_board.model.Board" parameterType="com.example.bd_board.model.Board">
+    <select id="searchBoard" resultType="com.example.bd_board.model.Board" parameterType="map">
         <choose>
             <when test="type == 'title'">
                 SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%')
@@ -43,4 +40,5 @@
             </otherwise>
         </choose>
     </select>
+
 </mapper>
