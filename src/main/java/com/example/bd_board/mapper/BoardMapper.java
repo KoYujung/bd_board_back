@@ -23,19 +23,37 @@ public interface BoardMapper {
     @Delete("DELETE from board_db WHERE no = #{no}")
     int deleteBoardByNo(Integer no);
 
+//    @Select("SELECT * FROM board_db WHERE title LIKE CONCAT('%',#{keyword}, '%')")
+//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+//    @Select("SELECT * FROM board_db WHERE member_id LIKE CONCAT('%',#{keyword}, '%')")
+//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+
     @Select({
-            "<choose>",
-            "<when test='type == \"title\"'>",
-            "SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%')",
-            "</when>",
-            "<when test='type == \"member_id\"'>",
-            "SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%')",
-            "</when>",
-            "<otherwise>",
-            "SELECT null",
-            "</otherwise>",
+            "<choose>" +
+            "<when test='type == \"title\"'>" +
+            "SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%')" +
+            "</when>" +
+            "<when test='type == \"member_id\"'>" +
+            "SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%')" +
+            "</when>" +
+            "<otherwise>" +
+            "SELECT null" +
+            "</otherwise>" +
             "</choose>"
     })
     List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+
+//    @Select(
+//            "SELECT * FROM board_db" +
+//            "<where>" +
+//            "<if test='type == \"title\"'>" +
+//            "AND title LIKE CONCAT('%', #{keyword}, '%')" +
+//            "</if>" +
+//            "<if test='type == \"member_id\"'>" +
+//            "AND member_id LIKE CONCAT('%', #{keyword}, '%')" +
+//            "</if>" +
+//            "</where>"
+//    )
+//    List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
 
 }

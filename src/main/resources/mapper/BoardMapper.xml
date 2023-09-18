@@ -26,16 +26,21 @@
         WHERE no = #{no}
     </delete>
 
-    <select id="searchBoard" resultType="com.example.bd_board.model.Board">
+    <select id="searchtitle" resultType="com.example.bd_board.model.Board" parameterType="com.example.bd_board.model.Board">
+
+    </select>
+
+    <select id="searchBoard" resultType="com.example.bd_board.model.Board" parameterType="com.example.bd_board.model.Board">
         <choose>
-            <when test="type =='title'">
-                SELECT * FROM board_db
-                WHERE title LIKE CONCAT('%',#{keyword},'%')
+            <when test="type == 'title'">
+                SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%')
             </when>
-            <when test="type =='member_id'">
-                SELECT * FROM board_db
-                WHERE member_id LIKE CONCAT('%',#{keyword},'%')
+            <when test="type == 'member_id'">
+                SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%')
             </when>
+            <otherwise>
+                SELECT null
+            </otherwise>
         </choose>
     </select>
 </mapper>
