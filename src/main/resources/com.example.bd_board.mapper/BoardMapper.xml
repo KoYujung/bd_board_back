@@ -14,14 +14,20 @@
         INSERT INTO board_db (title, contents, member_id)
         VALUES (#{title}, #{contents}, #{member_id})
     </insert>
+    
+    <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
+        SELECT *
+        FROM board_db
+        WHERE no = #{no}
+    </select>
 
-    <update id="updateBoard" parameterType="map">
+    <update id="updateBoardByNo" parameterType="map">
         UPDATE board_db
         SET title = #{param1}, contents = #{param2}, member_id = #{param3}
         WHERE no = #{no}
     </update>
 
-    <delete id="deleteBoard" parameterType="com.example.bd_board.model.Board">
+    <delete id="deleteBoardByNo" parameterType="com.example.bd_board.model.Board">
         DELETE
         FROM board_db
         WHERE no = #{no}

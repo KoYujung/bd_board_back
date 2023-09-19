@@ -7,6 +7,11 @@
     </appender>
 
     <logger name="jdbc" level="OFF"/>
+    <!--  SQL 쿼리 문장 -->
+    <logger name="jdbc.sqlonly" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </logger>
 
     <logger name="jdbc.sqlonly" level="OFF"/>
     <logger name="jdbc.sqltiming" level="DEBUG"/>

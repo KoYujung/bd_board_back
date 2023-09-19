@@ -3,6 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <mappers>
-    <mapper resource="com/example/bd_board/mapper/BoardMapper.xml" />
+    <mapper resource ="com.example.bd_board.mapper.BoardMapper.xml"/>
 </mappers>
 </configuration>

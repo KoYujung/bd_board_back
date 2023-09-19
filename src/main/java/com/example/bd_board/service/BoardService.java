@@ -36,11 +36,14 @@ public class BoardService {
         return boardMapper.deleteBoardByNo(no);
     }
 
-    public List<Board> searchBoard(String type, String keyword) {
+/*    public List<Board> searchBoard(String type, String keyword) {
         if(Objects.equals(type, "title")) {
             return boardMapper.searchBoardT(type,keyword);
         }
         else return boardMapper.searchBoardM(type,keyword);
+    }*/
+    public List<Board> searchBoard(String type, String keyword) {
+        return boardMapper.searchBoard(type, keyword);
     }
 
 }
