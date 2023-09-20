@@ -8,6 +8,7 @@
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
+        ORDER BY no DESC
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
@@ -21,9 +22,9 @@
         WHERE no = #{no}
     </select>
 
-    <update id="updateBoardByNo" parameterType="map">
+    <update id="updateBoardByNo" parameterType="com.example.bd_board.model.Board">
         UPDATE board_db
-        SET title = #{param1}, contents = #{param2}, member_id = #{param3}
+        SET title = #{board.title}, contents = #{board.contents}, member_id = #{board.member_id}
         WHERE no = #{no}
     </update>
 
