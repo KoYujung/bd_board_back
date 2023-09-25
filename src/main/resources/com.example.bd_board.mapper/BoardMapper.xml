@@ -12,8 +12,8 @@
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board_db (title, contents, member_id)
-        VALUES (#{title}, #{contents}, #{member_id})
+        INSERT INTO board_db (title, contents, member_id, filename, filepath)
+        VALUES (#{title}, #{contents}, #{member_id}), #{filename}, #{filepath}
     </insert>
     
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">

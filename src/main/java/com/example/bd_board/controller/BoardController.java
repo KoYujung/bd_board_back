@@ -30,7 +30,6 @@ public class BoardController {
     @GetMapping("/read_board/{no}")
     public ResponseEntity<Board> getBoardByNo(@PathVariable Integer no) {
         Board board = boardService.getBoardByNo(no);
-        System.out.println("글 상세 조회");
         if(board != null) {
             return ResponseEntity.ok(board);
         } else {

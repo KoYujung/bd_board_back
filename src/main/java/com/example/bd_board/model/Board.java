@@ -1,8 +1,6 @@
 package com.example.bd_board.model;
 
 import lombok.Data;
-import org.apache.coyote.http11.filters.SavedRequestInputFilter;
-
 import java.sql.Date;
 
 @Data
