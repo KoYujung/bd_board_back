@@ -32,6 +32,10 @@ public class BoardService {
         return boardMapper.updateBoardByNo(no,board);
     }
 
+    public int changeUseYN(Integer no) {
+        return boardMapper.changeUseYN(no);
+    }
+
     public int deleteBoard(Integer no) {
         return boardMapper.deleteBoardByNo(no);
     }
@@ -40,4 +44,7 @@ public class BoardService {
         return boardMapper.searchBoard(type, keyword);
     }
 
+    public int registerMember(Board board) {
+        return boardMapper.registerMember(board);
+    }
 }

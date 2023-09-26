@@ -8,12 +8,13 @@
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
+        WHERE useYN IN ('Y')
         ORDER BY no DESC
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board_db (title, contents, member_id, filename, filepath)
-        VALUES (#{title}, #{contents}, #{member_id}), #{filename}, #{filepath}
+        INSERT INTO board_db (title, contents, member_id)
+        VALUES (#{title}, #{contents}, #{member_id})
     </insert>
     
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
@@ -25,6 +26,12 @@
     <update id="updateBoardByNo" parameterType="com.example.bd_board.model.Board">
         UPDATE board_db
         SET title = #{board.title}, contents = #{board.contents}, member_id = #{board.member_id}
+        WHERE no = #{no}
+    </update>
+
+    <update id="changeUseYN" parameterType="com.example.bd_board.model.Board">
+        UPDATE board_db
+        SET useYN = 'N'
         WHERE no = #{no}
     </update>
 
@@ -47,5 +54,10 @@
             </otherwise>
         </choose>
     </select>
+
+    <insert id="registerMember" parameterType="com.example.bd_board.model.Board">
+        INSERT INTO member_db (uname, uid, upass)
+        VALUES (#{uname}, #{uid}, #{upass})
+    </insert>
 
 </mapper>

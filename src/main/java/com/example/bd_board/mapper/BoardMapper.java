@@ -15,8 +15,12 @@ public interface BoardMapper {
 
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
+    int changeUseYN(@Param("no") Integer no);
+
     int deleteBoardByNo(Integer no);
 
     List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
+
+    int registerMember(Board board);
 
 }

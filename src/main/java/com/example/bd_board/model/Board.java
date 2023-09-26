@@ -11,9 +11,7 @@ public class Board {
     private Date created_time;
     private String contents;
     private String title;
-
-    private String filename;
-    private String filepath;
+    private String useYN;
 
     private String type;
     private String keyword;

@@ -42,6 +42,11 @@ public class BoardController {
         return boardService.updateBoard(no, board);
     }
 
+    @PutMapping("/change_UseYN/{no}")
+    public int changeUseYN(@PathVariable Integer no){
+        return boardService.changeUseYN(no);
+    }
+
     @DeleteMapping("/delete_board/{no}")
     public int deleteBoardByNo(@PathVariable Integer no) {
         return boardService.deleteBoard(no);
@@ -50,5 +55,10 @@ public class BoardController {
     @GetMapping("/search_board/{type}/{keyword}")
     public List<Board> searchBoard(@PathVariable String type, @PathVariable String keyword) {
         return boardService.searchBoard(type,keyword);
+    }
+
+    @PostMapping("/register_member")
+    public int registerMember(@RequestBody Board board) {
+        return boardService.registerMember(board);
     }
 }
