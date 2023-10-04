@@ -47,4 +47,8 @@ public class BoardService {
     public int registerMember(Board board) {
         return boardMapper.registerMember(board);
     }
+
+    public int addComment(Integer no, Board board) {
+        return boardMapper.addComment(no, board);
+    }
 }

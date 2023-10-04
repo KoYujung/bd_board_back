@@ -61,4 +61,9 @@ public class BoardController {
     public int registerMember(@RequestBody Board board) {
         return boardService.registerMember(board);
     }
+
+    @PostMapping("/add_comment/{no}")
+    public int addComment(@PathVariable Integer no, @RequestParam Board board) {
+        return boardService.addComment(no,board);
+    }
 }

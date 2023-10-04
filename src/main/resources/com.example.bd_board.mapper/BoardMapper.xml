@@ -55,9 +55,9 @@
         </choose>
     </select>
 
-    <insert id="registerMember" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO member_db (uname, uid, upass)
-        VALUES (#{uname}, #{uid}, #{upass})
+    <insert id="addComment" parameterType="com.example.bd_board.model.Board">
+        INSERT INTO board_comment (c_contents)
+        VALUES #{c_contents}
+        WHERE bno = #{no}
     </insert>
-
 </mapper>

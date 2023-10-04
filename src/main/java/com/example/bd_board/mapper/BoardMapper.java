@@ -23,4 +23,6 @@ public interface BoardMapper {
 
     int registerMember(Board board);
 
+    int addComment(@Param("no") Integer no, Board board);
+
 }

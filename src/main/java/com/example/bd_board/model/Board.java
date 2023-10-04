@@ -15,4 +15,10 @@ public class Board {
 
     private String type;
     private String keyword;
+
+    private Integer cno;
+    private Integer bno;
+    private Date c_created_time;
+    private String c_contents;
+    private String c_useYN;
 }
