@@ -2,6 +2,7 @@ package com.example.bd_board.service;
 
 import com.example.bd_board.mapper.BoardMapper;
 import com.example.bd_board.model.Board;
+import com.example.bd_board.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class BoardService {
         return boardMapper.registerMember(board);
     }
 
-    public int addComment(Integer no, Board board) {
-        return boardMapper.addComment(no, board);
+    public int addComment(Integer no, Comment comment) {
+        return boardMapper.addComment(no, comment);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.bd_board.mapper;
 
 import com.example.bd_board.model.Board;
+import com.example.bd_board.model.Comment;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -23,6 +24,6 @@ public interface BoardMapper {
 
     int registerMember(Board board);
 
-    int addComment(@Param("no") Integer no, Board board);
+    int addComment(@Param("no") Integer no, Comment comment);
 
 }
