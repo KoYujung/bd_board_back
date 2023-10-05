@@ -55,9 +55,14 @@
         </choose>
     </select>
 
-    <insert id="addComment" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board_comment (c_contents)
-        VALUES #{c_contents}
-        WHERE bno = #{no}
+    <insert id="addComment" parameterType="com.example.bd_board.model.Comment">
+        INSERT INTO board_comment (bno ,c_contents)
+        VALUES (#{bno}, #{comment.c_contents})
     </insert>
+
+    <select id="getComment" parameterType="com.example.bd_board.model.Comment">
+        SELECT *
+        FROM board_comment
+        WHERE bno = #{comment.bno}
+    </select>
 </mapper>

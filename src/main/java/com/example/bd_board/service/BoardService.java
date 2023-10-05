@@ -49,7 +49,11 @@ public class BoardService {
         return boardMapper.registerMember(board);
     }
 
-    public int addComment(Integer no, Comment comment) {
-        return boardMapper.addComment(no, comment);
+    public int addComment(Integer bno, Comment comment) {
+        return boardMapper.addComment(bno, comment);
+    }
+
+    public List<Comment> getComment(Integer bno, Comment comment) {
+        return boardMapper.getComment(bno, comment);
     }
 }

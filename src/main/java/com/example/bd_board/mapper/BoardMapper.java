@@ -24,6 +24,8 @@ public interface BoardMapper {
 
     int registerMember(Board board);
 
-    int addComment(@Param("no") Integer no, Comment comment);
+    int addComment(@Param("bno") Integer bno, @Param("comment") Comment comment);
+
+    List<Comment> getComment(@Param("bno") Integer bno, @Param("comment") Comment comment);
 
 }

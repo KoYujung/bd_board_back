@@ -10,5 +10,4 @@ public class Comment {
     private Integer bno;
     private Date c_created_time;
     private String c_contents;
-    private String c_useYN;
 }
