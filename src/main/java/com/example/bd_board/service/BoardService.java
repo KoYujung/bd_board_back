@@ -53,7 +53,7 @@ public class BoardService {
         return boardMapper.addComment(bno, comment);
     }
 
-    public List<Comment> getComment(Integer bno, Comment comment) {
-        return boardMapper.getComment(bno, comment);
+    public List<Comment> getComment(Integer bno) {
+        return boardMapper.getComment(bno);
     }
 }

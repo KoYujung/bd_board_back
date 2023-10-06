@@ -69,7 +69,7 @@ public class BoardController {
     }
 
     @GetMapping("/get_comment/{bno}")
-    public List<Comment> getComment(@PathVariable Integer bno, @RequestBody Comment comment) {
-        return boardService.getComment(bno, comment);
+    public List<Comment> getComment(@PathVariable Integer bno) {
+        return boardService.getComment(bno);
     }
 }
