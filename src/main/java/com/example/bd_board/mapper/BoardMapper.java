@@ -4,6 +4,7 @@ import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
 import org.apache.ibatis.annotations.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -16,7 +17,7 @@ public interface BoardMapper {
 
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
-    int changeUseYN(@Param("no") Integer no);
+    ArrayList<Integer> changeUseYN(@Param("no") ArrayList<Integer> no);
 
     int deleteBoardByNo(Integer no);
 

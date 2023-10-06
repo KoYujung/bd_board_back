@@ -6,8 +6,8 @@ import com.example.bd_board.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class BoardService {
@@ -33,8 +33,12 @@ public class BoardService {
         return boardMapper.updateBoardByNo(no,board);
     }
 
-    public int changeUseYN(Integer no) {
-        return boardMapper.changeUseYN(no);
+    public ArrayList<Integer> changeUseYN(ArrayList<Integer> no) {
+        for(int i = 0 ; i < no.size(); i ++ ) {
+//            System.out.println(no.get(i));
+            return boardMapper.changeUseYN(no.get(i));
+        }
+//        return boardMapper.changeUseYN(no);
     }
 
     public int deleteBoard(Integer no) {

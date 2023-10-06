@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,7 +45,7 @@ public class BoardController {
     }
 
     @PutMapping("/change_UseYN/{no}")
-    public int changeUseYN(@PathVariable Integer no){
+    public ArrayList<Integer> changeUseYN(@PathVariable ArrayList<Integer> no){
         return boardService.changeUseYN(no);
     }
 
