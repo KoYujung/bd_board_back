@@ -44,8 +44,8 @@ public class BoardController {
         return boardService.updateBoard(no, board);
     }
 
-    @PutMapping("/change_UseYN/{no}")
-    public ArrayList<Integer> changeUseYN(@PathVariable ArrayList<Integer> no){
+    @PutMapping("/change_UseYN")
+    public ArrayList<Integer> changeUseYN(@RequestBody ArrayList<Integer> no){
         return boardService.changeUseYN(no);
     }
 

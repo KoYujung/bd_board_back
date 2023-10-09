@@ -33,12 +33,13 @@ public class BoardService {
         return boardMapper.updateBoardByNo(no,board);
     }
 
+
     public ArrayList<Integer> changeUseYN(ArrayList<Integer> no) {
-        for(int i = 0 ; i < no.size(); i ++ ) {
-//            System.out.println(no.get(i));
-            return boardMapper.changeUseYN(no.get(i));
+        ArrayList<Integer> result = new ArrayList<>();
+        for(int i = 0; i < no.size(); i ++) {
+            result.addAll(boardMapper.changeUseYN(no.get(i)));
         }
-//        return boardMapper.changeUseYN(no);
+        return result;
     }
 
     public int deleteBoard(Integer no) {

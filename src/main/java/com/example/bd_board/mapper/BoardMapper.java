@@ -17,7 +17,7 @@ public interface BoardMapper {
 
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
-    ArrayList<Integer> changeUseYN(@Param("no") ArrayList<Integer> no);
+    ArrayList<Integer> changeUseYN(@Param("no") Integer no);
 
     int deleteBoardByNo(Integer no);
 
