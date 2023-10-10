@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -35,9 +36,12 @@ public class BoardService {
 
 
     public ArrayList<Integer> changeUseYN(ArrayList<Integer> no) {
+        System.out.println(no);
+        System.out.println(no.get(1));
+
         ArrayList<Integer> result = new ArrayList<>();
         for(int i = 0; i < no.size(); i ++) {
-            result.addAll(boardMapper.changeUseYN(no.get(i)));
+            result.add(boardMapper.changeUseYN(no.get(i)));
         }
         return result;
     }
