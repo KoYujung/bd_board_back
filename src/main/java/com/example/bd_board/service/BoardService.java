@@ -34,12 +34,9 @@ public class BoardService {
         return boardMapper.updateBoardByNo(no,board);
     }
 
-
     public ArrayList<Integer> changeUseYN(ArrayList<Integer> no) {
-        System.out.println(no);
-        System.out.println(no.get(1));
-
         ArrayList<Integer> result = new ArrayList<>();
+
         for(int i = 0; i < no.size(); i ++) {
             result.add(boardMapper.changeUseYN(no.get(i)));
         }

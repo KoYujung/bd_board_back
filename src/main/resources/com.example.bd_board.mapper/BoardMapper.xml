@@ -49,6 +49,9 @@
             <when test="type == 'member_id'">
                 SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%')
             </when>
+            <when test="type == 'content'">
+                SELECT * FROM board_db WHERE contents LIKE CONCAT('%', #{keyword}, '%')
+            </when>
             <otherwise>
                 SELECT null
             </otherwise>
