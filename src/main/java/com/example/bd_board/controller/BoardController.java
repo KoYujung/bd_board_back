@@ -69,6 +69,11 @@ public class BoardController {
         return boardService.getComment(bno);
     }
 
+    @GetMapping("/count_comment/{bno}")
+    public int countComment(@PathVariable Integer bno) {
+        return boardService.countComment(bno);
+    }
+
     @PutMapping("/add_view/{no}")
     public int addView(@PathVariable Integer no) {
         return boardService.addView(no);

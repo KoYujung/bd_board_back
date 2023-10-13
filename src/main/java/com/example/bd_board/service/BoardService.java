@@ -59,6 +59,10 @@ public class BoardService {
         return boardMapper.getComment(bno);
     }
 
+    public int countComment(Integer bno) {
+        return boardMapper.countComment(bno);
+    }
+
     public int addView(Integer no) {
         return boardMapper.addView(no);
     }

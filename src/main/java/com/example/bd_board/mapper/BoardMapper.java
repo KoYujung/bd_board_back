@@ -27,6 +27,8 @@ public interface BoardMapper {
 
     List<Comment> getComment(@Param("bno") Integer bno);
 
+    int countComment(@Param("bno") Integer bno);
+
     int addView(@Param("no") Integer no);
 
 }
