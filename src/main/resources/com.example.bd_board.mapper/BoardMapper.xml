@@ -68,4 +68,11 @@
         FROM board_comment
         WHERE bno = #{bno}
     </select>
+
+    <update id="addView" parameterType="com.example.bd_board.model.Board">
+        UPDATE board_db
+        SET view = view + 1
+        WHERE no = #{no}
+    </update>
+
 </mapper>

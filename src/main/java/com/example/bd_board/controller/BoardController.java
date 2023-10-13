@@ -45,7 +45,7 @@ public class BoardController {
     }
 
     @PutMapping("/change_UseYN")
-    public ArrayList<Integer> changeUseYN(@RequestBody ArrayList<Integer> no){
+    public ArrayList<Integer> changeUseYN(@RequestBody ArrayList<Integer> no) {
         return boardService.changeUseYN(no);
     }
 
@@ -59,11 +59,6 @@ public class BoardController {
         return boardService.searchBoard(type,keyword);
     }
 
-    @PostMapping("/register_member")
-    public int registerMember(@RequestBody Board board) {
-        return boardService.registerMember(board);
-    }
-
     @PostMapping("/add_comment/{bno}")
     public int addComment(@PathVariable Integer bno, @RequestBody Comment comment) {
         return boardService.addComment(bno, comment);
@@ -72,5 +67,10 @@ public class BoardController {
     @GetMapping("/get_comment/{bno}")
     public List<Comment> getComment(@PathVariable Integer bno) {
         return boardService.getComment(bno);
+    }
+
+    @PutMapping("/add_view/{no}")
+    public int addView(@PathVariable Integer no) {
+        return boardService.addView(no);
     }
 }

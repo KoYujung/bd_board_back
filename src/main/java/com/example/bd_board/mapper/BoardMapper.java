@@ -23,10 +23,10 @@ public interface BoardMapper {
 
     List<Board> searchBoard(@Param("type") String type, @Param("keyword") String keyword);
 
-    int registerMember(Board board);
-
     int addComment(@Param("bno") Integer bno, @Param("comment") Comment comment);
 
     List<Comment> getComment(@Param("bno") Integer bno);
+
+    int addView(@Param("no") Integer no);
 
 }

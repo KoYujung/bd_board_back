@@ -12,6 +12,7 @@ public class Board {
     private String contents;
     private String title;
     private String useYN;
+    private Integer view;
 
     private String type;
     private String keyword;
