@@ -17,7 +17,7 @@ public interface BoardMapper {
 
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
-    int changeUseYN(@Param("no") Integer no);
+    int changeUseYN(Integer no);
 
     int deleteBoardByNo(Integer no);
 
@@ -25,10 +25,11 @@ public interface BoardMapper {
 
     int addComment(@Param("bno") Integer bno, @Param("comment") Comment comment);
 
-    List<Comment> getComment(@Param("bno") Integer bno);
+    List<Comment> getComment(Integer bno);
 
-    int countComment(@Param("bno") Integer bno);
+    int countComment(Integer bno);
 
-    int addView(@Param("no") Integer no);
+    int addView(Integer no);
 
+    List<Board> getTop4Boards();
 }

@@ -66,4 +66,8 @@ public class BoardService {
     public int addView(Integer no) {
         return boardMapper.addView(no);
     }
+
+    public List<Board> getTop4Boards() {
+        return boardMapper.getTop4Boards();
+    }
 }

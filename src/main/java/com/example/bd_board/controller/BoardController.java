@@ -78,4 +78,9 @@ public class BoardController {
     public int addView(@PathVariable Integer no) {
         return boardService.addView(no);
     }
+
+    @GetMapping("/get_Top4Boards")
+    public List<Board> getTop4Boards() {
+        return boardService.getTop4Boards();
+    }
 }
