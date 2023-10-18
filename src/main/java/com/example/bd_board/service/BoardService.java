@@ -59,6 +59,10 @@ public class BoardService {
         return boardMapper.getComment(bno);
     }
 
+    public int delComment(Integer bno) {
+        return boardMapper.delComment(bno);
+    }
+
     public int countComment(Integer bno) {
         return boardMapper.countComment(bno);
     }

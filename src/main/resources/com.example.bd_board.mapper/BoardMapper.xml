@@ -59,20 +59,26 @@
     </select>
 
     <insert id="addComment" parameterType="com.example.bd_board.model.Comment">
-        INSERT INTO board_comment (bno ,c_contents)
-        VALUES (#{bno}, #{comment.c_contents})
+        INSERT INTO board_comment (bno ,c_contents, c_member_id)
+        VALUES (#{bno}, #{comment.c_contents}, #{comment.c_member_id})
     </insert>
 
     <select id="getComment" resultType="com.example.bd_board.model.Comment" parameterType="map">
         SELECT *
         FROM board_comment
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} AND useYN IN ('Y')
     </select>
+
+    <update id="delComment" parameterType="com.example.bd_board.model.Comment">
+        UPDATE board_comment
+        SET useYN = 'N'
+        WHERE bno = #{bno}
+    </update>
 
     <select id="countComment" resultType="Integer">
         SELECT COUNT(*)
         FROM board_comment
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} AND useYN IN ('Y')
     </select>
 
     <update id="addView" parameterType="com.example.bd_board.model.Board">

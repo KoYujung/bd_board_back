@@ -69,6 +69,11 @@ public class BoardController {
         return boardService.getComment(bno);
     }
 
+    @PutMapping("/delete_comment/{bno}")
+    public int delComment(@PathVariable Integer bno) {
+        return boardService.delComment(bno);
+    }
+
     @GetMapping("/count_comment/{bno}")
     public int countComment(@PathVariable Integer bno) {
         return boardService.countComment(bno);

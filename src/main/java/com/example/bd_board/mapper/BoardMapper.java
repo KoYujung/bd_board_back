@@ -27,6 +27,8 @@ public interface BoardMapper {
 
     List<Comment> getComment(Integer bno);
 
+    int delComment(Integer bno);
+
     int countComment(Integer bno);
 
     int addView(Integer no);

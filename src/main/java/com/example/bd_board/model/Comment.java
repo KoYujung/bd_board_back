@@ -10,4 +10,6 @@ public class Comment {
     private Integer bno;
     private Date c_created_time;
     private String c_contents;
+    private String useYN;
+    private String c_member_id;
 }
