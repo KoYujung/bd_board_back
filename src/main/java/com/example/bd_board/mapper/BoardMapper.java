@@ -2,6 +2,7 @@ package com.example.bd_board.mapper;
 
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.Member;
 import org.apache.ibatis.annotations.*;
 
 import java.util.ArrayList;
@@ -34,4 +35,6 @@ public interface BoardMapper {
     int addView(Integer no);
 
     List<Board> getTop4Boards();
+
+    int registerMember(Member member);
 }

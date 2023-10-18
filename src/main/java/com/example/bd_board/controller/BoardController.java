@@ -2,6 +2,7 @@ package com.example.bd_board.controller;
 
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.Member;
 import com.example.bd_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -87,5 +88,10 @@ public class BoardController {
     @GetMapping("/get_Top4Boards")
     public List<Board> getTop4Boards() {
         return boardService.getTop4Boards();
+    }
+
+    @PostMapping("/register_member")
+    public int registerMember(@RequestBody Member member) {
+        return boardService.registerMember(member);
     }
 }

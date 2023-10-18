@@ -72,7 +72,7 @@
     <update id="delComment" parameterType="com.example.bd_board.model.Comment">
         UPDATE board_comment
         SET useYN = 'N'
-        WHERE bno = #{bno}
+        WHERE cno = #{cno}
     </update>
 
     <select id="countComment" resultType="Integer">
@@ -94,5 +94,10 @@
         ORDER BY view DESC
         LIMIT 4
     </select>
+
+    <insert id="registerMember" parameterType="com.example.bd_board.model.Member">
+        INSERT INTO board_member (uid, uname, upass)
+        VALUES (#{uid}, #{uname}, #{upass})
+    </insert>
 
 </mapper>

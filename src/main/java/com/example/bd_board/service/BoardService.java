@@ -3,11 +3,11 @@ package com.example.bd_board.service;
 import com.example.bd_board.mapper.BoardMapper;
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -73,5 +73,9 @@ public class BoardService {
 
     public List<Board> getTop4Boards() {
         return boardMapper.getTop4Boards();
+    }
+
+    public int registerMember(Member member) {
+        return boardMapper.registerMember(member);
     }
 }
