@@ -37,4 +37,8 @@ public interface BoardMapper {
     List<Board> getTop4Boards();
 
     int registerMember(Member member);
+
+    List<Member> getAllMembers();
+
+    Member login();
 }

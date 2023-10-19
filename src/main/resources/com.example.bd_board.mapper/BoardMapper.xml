@@ -100,4 +100,15 @@
         VALUES (#{uid}, #{uname}, #{upass})
     </insert>
 
+    <select id="getAllMembers">
+        SELECT *
+        FROM board_member
+    </select>
+
+    <select id="login" resultType="com.example.bd_board.model.Member">
+        SELECT *
+        FROM board_member
+        WHERE uid = #{uid} AND upass = #{upass}
+    </select>
+
 </mapper>

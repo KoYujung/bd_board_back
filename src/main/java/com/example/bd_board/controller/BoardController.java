@@ -4,6 +4,7 @@ import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
 import com.example.bd_board.model.Member;
 import com.example.bd_board.service.BoardService;
+import org.apache.ibatis.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -93,5 +94,15 @@ public class BoardController {
     @PostMapping("/register_member")
     public int registerMember(@RequestBody Member member) {
         return boardService.registerMember(member);
+    }
+
+    @GetMapping("/get_member")
+    public List<Member> getAllMembers() {
+        return boardService.getAllMembers();
+    }
+
+    @PostMapping("/login")
+    public Member login() {
+        return boardService.login();
     }
 }

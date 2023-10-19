@@ -78,4 +78,12 @@ public class BoardService {
     public int registerMember(Member member) {
         return boardMapper.registerMember(member);
     }
+
+    public List<Member> getAllMembers() {
+        return boardMapper.getAllMembers();
+    }
+
+    public Member login() {
+        return boardMapper.login();
+    }
 }
