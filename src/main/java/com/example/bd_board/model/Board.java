@@ -13,6 +13,8 @@ public class Board {
     private String title;
     private String useYN;
     private Integer view;
+    private String fid;
+    private String fname;
 
     private String type;
     private String keyword;

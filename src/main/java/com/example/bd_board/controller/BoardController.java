@@ -14,12 +14,15 @@ import java.util.List;
 
 @RestController
 public class BoardController {
-    private final BoardService boardService;
+//    private final BoardService boardService;
+//
+//    @Autowired
+//    public BoardController(BoardService boardService) {
+//        this.boardService = boardService;
+//    }
 
     @Autowired
-    public BoardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
+    public BoardService boardService;
 
     @GetMapping("/board")
     public List<Board> getAllBoards() {

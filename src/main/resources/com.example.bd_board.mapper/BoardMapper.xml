@@ -13,8 +13,8 @@
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board_db (title, contents, member_id)
-        VALUES (#{title}, #{contents}, #{member_id})
+        INSERT INTO board_db (title, contents, member_id, fid, fname)
+        VALUES (#{title}, #{contents}, #{member_id}, #{fid}, #{fname})
     </insert>
     
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
