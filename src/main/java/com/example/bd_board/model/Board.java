@@ -1,6 +1,8 @@
 package com.example.bd_board.model;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
 
 @Data
@@ -13,9 +15,9 @@ public class Board {
     private String title;
     private String useYN;
     private Integer view;
-    private String fid;
-    private String fname;
 
     private String type;
     private String keyword;
+
+    private MultipartFile[] files;
 }

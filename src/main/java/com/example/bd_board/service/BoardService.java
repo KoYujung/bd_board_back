@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BoardService {
@@ -24,6 +25,14 @@ public class BoardService {
     }
 
     public int createBoard(Board board) {
+
+        if(board.getFiles() != null && board.getFiles().length > 0) {
+            String uuid = UUID.randomUUID().toString();
+            String originName = String.valueOf(board.getFiles()[0].getOriginalFilename());
+
+            System.out.println(originName);
+        }
+
         return boardMapper.createBoard(board);
     }
 
