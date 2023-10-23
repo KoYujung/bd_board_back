@@ -13,14 +13,20 @@
     </select>
 
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board">
-        INSERT INTO board_db (title, contents, member_id, fid, fname)
-        VALUES (#{title}, #{contents}, #{member_id}, #{fid}, #{fname})
+        INSERT INTO board_db (title, contents, member_id, fid, fname, fpath)
+        VALUES (#{title}, #{contents}, #{member_id},#{fid}, #{fname}, #{fpath});
     </insert>
     
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
         WHERE no = #{no}
+    </select>
+
+    <select id="download" parameterType="com.example.bd_board.model.Board">
+        SELECT *
+        FROM board_db
+        WHERE fid = #{fid}
     </select>
 
     <update id="updateBoardByNo" parameterType="com.example.bd_board.model.Board">

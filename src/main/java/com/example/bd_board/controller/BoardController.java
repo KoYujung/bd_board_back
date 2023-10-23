@@ -4,11 +4,20 @@ import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
 import com.example.bd_board.model.Member;
 import com.example.bd_board.service.BoardService;
-import org.apache.ibatis.logging.Log;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +48,17 @@ public class BoardController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/download/{fid}")
+    public ResponseEntity<Board> download(@PathVariable String fid) throws IOException {
+        Board board = boardService.download(fid);
+        Path path = Paths.get(board.getFpath());
+        Resource resource = (Resource) new InputStreamResource(Files.newInputStream(path));
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + board.getFname() + "\"")
+                .body((Board) resource);
     }
 
     @PutMapping("/update_board/{no}")

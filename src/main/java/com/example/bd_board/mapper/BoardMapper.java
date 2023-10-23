@@ -16,6 +16,8 @@ public interface BoardMapper {
 
     Board getBoardByNo(Integer no);
 
+    Board download(String fid);
+
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
     int changeUseYN(Integer no);

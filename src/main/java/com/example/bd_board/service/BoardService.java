@@ -6,7 +6,13 @@ import com.example.bd_board.model.Comment;
 import com.example.bd_board.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,12 +31,27 @@ public class BoardService {
     }
 
     public int createBoard(Board board) {
+        MultipartFile[] files = board.getFiles();
 
-        if(board.getFiles() != null && board.getFiles().length > 0) {
-            String uuid = UUID.randomUUID().toString();
-            String originName = String.valueOf(board.getFiles()[0].getOriginalFilename());
+        if(files != null && files.length > 0) {
+            UUID uuid = UUID.randomUUID();
+            String fname = files[0].getOriginalFilename();
+            String fid = uuid + "_" + fname;
 
-            System.out.println(originName);
+            String localPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+            Path fpath = Paths.get(localPath, fid);
+
+            try{
+                Files.createDirectories(fpath.getParent());
+                Files.copy(files[0].getInputStream(), fpath, StandardCopyOption.REPLACE_EXISTING);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            board.setFid(fid);
+            board.setFname(fname);
+            board.setFiles(files);
+            board.setFpath(String.valueOf(fpath));
         }
 
         return boardMapper.createBoard(board);
@@ -39,6 +60,11 @@ public class BoardService {
     public Board getBoardByNo(Integer no) {
         return boardMapper.getBoardByNo(no);
     }
+
+    public Board download(String fid) {
+        return boardMapper.download(fid);
+    }
+
     public int updateBoard(Integer no, Board board) {
         return boardMapper.updateBoardByNo(no,board);
     }

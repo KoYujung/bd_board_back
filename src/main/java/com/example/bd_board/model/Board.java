@@ -3,6 +3,7 @@ package com.example.bd_board.model;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Paths;
 import java.sql.Date;
 
 @Data
@@ -20,4 +21,7 @@ public class Board {
     private String keyword;
 
     private MultipartFile[] files;
+    private String fid;
+    private String fname;
+    private String fpath;
 }
