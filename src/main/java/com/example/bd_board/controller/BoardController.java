@@ -7,14 +7,15 @@ import com.example.bd_board.service.BoardService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -51,17 +52,21 @@ public class BoardController {
     }
 
     @GetMapping("/download/{fid}")
-    public ResponseEntity<Board> download(@PathVariable String fid) throws IOException {
+    public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
         Board board = boardService.download(fid);
         Path path = Paths.get(board.getFpath());
-        Resource resource = (Resource) new InputStreamResource(Files.newInputStream(path));
+        org.springframework.core.io.Resource resource = new InputStreamResource(Files.newInputStream(path));
+//        UrlResource resource = new UrlResource("file:" + path);
+        String encodeName = UriUtils.encode(board.getFname(), StandardCharsets.UTF_8);
+
         return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodeName + "\"")
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + board.getFname() + "\"")
-                .body((Board) resource);
+                .body(resource);
     }
 
     @PutMapping("/update_board/{no}")
+
     public int updateBoard(@PathVariable Integer no, @RequestBody Board board) {
         return boardService.updateBoard(no, board);
     }
