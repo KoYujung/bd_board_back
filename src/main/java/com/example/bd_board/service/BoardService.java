@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,6 +59,26 @@ public class BoardService {
     }
 
     public Board getBoardByNo(Integer no) {
+        Board board = new Board();
+        MultipartFile[] file = board.getFiles();
+
+        if(file[0].getOriginalFilename().isEmpty()) {
+            board.setFiles(board.getFiles());
+            board.setFid(board.getFid());
+            board.setFname(board.getFname());
+            board.setFpath(board.getFpath());
+        } else if(file[0].getOriginalFilename() != null) {
+            File f = new File(board.getFpath());
+
+            if(f.exists()) {
+                f.delete();
+            }
+
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + board.getFname();
+            File saveFile = new File(board.getFpath(), fileName);
+
+        }
         return boardMapper.getBoardByNo(no);
     }
 
