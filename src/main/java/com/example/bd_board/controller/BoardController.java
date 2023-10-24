@@ -54,20 +54,19 @@ public class BoardController {
     @GetMapping("/download/{fid}")
     public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
         Board board = boardService.download(fid);
-        Path path = Paths.get(board.getFpath());
+        Path path = Paths.get(String.valueOf(board.getFpath()));
         org.springframework.core.io.Resource resource = new InputStreamResource(Files.newInputStream(path));
-//        UrlResource resource = new UrlResource("file:" + path);
-        String encodeName = UriUtils.encode(board.getFname(), StandardCharsets.UTF_8);
+        String encodeName = UriUtils.encode(String.valueOf(board.getFname()), StandardCharsets.UTF_8);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodeName + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + encodeName + "\"")
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
     }
 
     @PutMapping("/update_board/{no}")
 
-    public int updateBoard(@PathVariable Integer no, @RequestBody Board board) {
+    public int updateBoard(@PathVariable Integer no, Board board) {
         return boardService.updateBoard(no, board);
     }
 

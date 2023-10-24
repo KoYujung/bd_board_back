@@ -66,6 +66,29 @@ public class BoardService {
     }
 
     public int updateBoard(Integer no, Board board) {
+        MultipartFile[] files = board.getFiles();
+
+        if(files != null && files.length > 0) {
+            UUID uuid = UUID.randomUUID();
+            String fname = files[0].getOriginalFilename();
+            String fid = uuid + "_" + fname;
+
+            String localPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+            Path fpath = Paths.get(localPath, fid);
+
+            try{
+                Files.createDirectories(fpath.getParent());
+                Files.copy(files[0].getInputStream(), fpath, StandardCopyOption.REPLACE_EXISTING);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            board.setFid(fid);
+            board.setFname(fname);
+            board.setFiles(files);
+            board.setFpath(String.valueOf(fpath));
+        }
+
         return boardMapper.updateBoardByNo(no,board);
     }
 

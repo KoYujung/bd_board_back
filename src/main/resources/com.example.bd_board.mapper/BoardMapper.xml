@@ -31,7 +31,7 @@
 
     <update id="updateBoardByNo" parameterType="com.example.bd_board.model.Board">
         UPDATE board_db
-        SET title = #{board.title}, contents = #{board.contents}, member_id = #{board.member_id}
+        SET title = #{board.title}, contents = #{board.contents}, member_id = #{board.member_id}, fid = #{board.fid}, fname = #{board.fname}, fpath = #{board.fpath}
         WHERE no = #{no}
     </update>
 
