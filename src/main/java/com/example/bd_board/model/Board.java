@@ -24,4 +24,5 @@ public class Board {
     private String fid;
     private String fname;
     private String fpath;
+    private String fileYN;
 }

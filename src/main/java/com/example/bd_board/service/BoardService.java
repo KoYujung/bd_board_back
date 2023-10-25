@@ -58,27 +58,9 @@ public class BoardService {
         return boardMapper.createBoard(board);
     }
 
-    public Board getBoardByNo(Integer no) {
-        Board board = new Board();
-        MultipartFile[] file = board.getFiles();
+    public Board getBoardByNo(Integer no) throws IOException {
 
-        if(file[0].getOriginalFilename().isEmpty()) {
-            board.setFiles(board.getFiles());
-            board.setFid(board.getFid());
-            board.setFname(board.getFname());
-            board.setFpath(board.getFpath());
-        } else if(file[0].getOriginalFilename() != null) {
-            File f = new File(board.getFpath());
 
-            if(f.exists()) {
-                f.delete();
-            }
-
-            UUID uuid = UUID.randomUUID();
-            String fileName = uuid + "_" + board.getFname();
-            File saveFile = new File(board.getFpath(), fileName);
-
-        }
         return boardMapper.getBoardByNo(no);
     }
 
@@ -86,7 +68,20 @@ public class BoardService {
         return boardMapper.download(fid);
     }
 
+    public int deleteFile(String fid) {
+        return boardMapper.deleteFile(fid);
+    }
+
     public int updateBoard(Integer no, Board board) {
+
+
+        if(!board.getFid().isEmpty()) {
+            //기존에 업로드한 파일이 있으면 그대로 업로드하기 -> 새로운 uuid로 다시 저장됨 ??
+            board.setFid(board.getFid());
+            board.setFname(board.getFname());
+            board.setFpath(board.getFpath());
+        }
+
         MultipartFile[] files = board.getFiles();
 
         if(files != null && files.length > 0) {

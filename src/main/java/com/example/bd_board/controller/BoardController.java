@@ -42,7 +42,7 @@ public class BoardController {
     }
 
     @GetMapping("/read_board/{no}")
-    public ResponseEntity<Board> getBoardByNo(@PathVariable Integer no) {
+    public ResponseEntity<Board> getBoardByNo(@PathVariable Integer no) throws IOException {
         Board board = boardService.getBoardByNo(no);
         if(board != null) {
             return ResponseEntity.ok(board);
@@ -51,7 +51,7 @@ public class BoardController {
         }
     }
 
-    @GetMapping("/download/{fid}")
+    @GetMapping("/download_file/{fid}")
     public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
         Board board = boardService.download(fid);
         Path path = Paths.get(String.valueOf(board.getFpath()));
@@ -62,6 +62,11 @@ public class BoardController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + encodeName + "\"")
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
+    }
+
+    @PutMapping("/delete_file/{fid}")
+    public int deleteFile(@PathVariable String fid) {
+        return boardService.deleteFile(fid);
     }
 
     @PutMapping("/update_board/{no}")

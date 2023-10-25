@@ -18,6 +18,8 @@ public interface BoardMapper {
 
     Board download(String fid);
 
+    int deleteFile(String fid);
+
     int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
 
     int changeUseYN(Integer no);

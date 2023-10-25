@@ -23,11 +23,31 @@
         WHERE no = #{no}
     </select>
 
+<!--    <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">-->
+<!--        <choose>-->
+<!--            <when test="fileYN == 'Y'">-->
+<!--                SELECT * FROM board_db WHERE useYN IN ('Y') AND no = #{no}-->
+<!--            </when>-->
+<!--            <when test="fileYN == 'N'">-->
+<!--                SELECT * FROM board_db WHERE useYN IN ('Y') AND no = #{no} NOT IN ('fname')-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                SELECT null-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+<!--    </select>-->
+
     <select id="download" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
         WHERE fid = #{fid}
     </select>
+
+    <update id="deleteFile" parameterType="com.example.bd_board.model.Board">
+        UPDATE board_db
+        SET fileYN = 'N'
+        WHERE fid = #{fid}
+    </update>
 
     <update id="updateBoardByNo" parameterType="com.example.bd_board.model.Board">
         UPDATE board_db
