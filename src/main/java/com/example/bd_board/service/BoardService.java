@@ -3,12 +3,12 @@ package com.example.bd_board.service;
 import com.example.bd_board.mapper.BoardMapper;
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.File;
 import com.example.bd_board.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +32,15 @@ public class BoardService {
     }
 
     public int createBoard(Board board) {
-        MultipartFile[] files = board.getFiles();
+        boardMapper.createBoard(board);
+        if(!(board.getNo() == null)) {
+            return board.getNo();
+        }
+        return boardMapper.createBoard(board);
+    }
+
+    public int createFile(File file, Integer bno) {
+        MultipartFile[] files = file.getFiles();
 
         if(files != null && files.length > 0) {
             for(int i = 0; i < files.length; i ++) {
@@ -50,19 +58,17 @@ public class BoardService {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                board.setFid(fid);
-                board.setFname(fname);
-                board.setFiles(files);
-                board.setFpath(String.valueOf(fpath));
+                file.setFid(fid);
+                file.setFname(fname);
+                file.setFiles(files);
+                file.setFpath(String.valueOf(fpath));
             }
         }
 
-        return boardMapper.createBoard(board);
+        return boardMapper.createFile(file, bno);
     }
 
     public Board getBoardByNo(Integer no) throws IOException {
-
-
         return boardMapper.getBoardByNo(no);
     }
 
@@ -74,41 +80,41 @@ public class BoardService {
         return boardMapper.deleteFile(fid);
     }
 
-    public int updateBoard(Integer no, Board board) {
-
-
-        if(!board.getFid().isEmpty()) {
-            //기존에 업로드한 파일이 있으면 그대로 업로드하기 -> 새로운 uuid로 다시 저장됨 ??
-            board.setFid(board.getFid());
-            board.setFname(board.getFname());
-            board.setFpath(board.getFpath());
-        }
-
-        MultipartFile[] files = board.getFiles();
-
-        if(files != null && files.length > 0) {
-            UUID uuid = UUID.randomUUID();
-            String fname = files[0].getOriginalFilename();
-            String fid = uuid + "_" + fname;
-
-            String localPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-            Path fpath = Paths.get(localPath, fid);
-
-            try{
-                Files.createDirectories(fpath.getParent());
-                Files.copy(files[0].getInputStream(), fpath, StandardCopyOption.REPLACE_EXISTING);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            board.setFid(fid);
-            board.setFname(fname);
-            board.setFiles(files);
-            board.setFpath(String.valueOf(fpath));
-        }
-
-        return boardMapper.updateBoardByNo(no,board);
-    }
+//    public int updateBoard(Integer no, Board board) {
+//        MultipartFile[] files = board.getFiles();
+//
+//        if(!board.getFid().isEmpty()) {
+//            //기존에 업로드한 파일이 있으면 그대로 업로드하기 -> 새로운 uuid로 다시 저장됨 ??
+//            board.setFid(board.getFid());
+//            board.setFname(board.getFname());
+//            board.setFpath(board.getFpath());
+//        }
+//
+//        else if(files != null && files.length > 0) {
+//            for(int i = 0; i < files.length; i ++) {
+//                UUID uuid = UUID.randomUUID();
+//                String fname =  files[i].getOriginalFilename();
+//                String fid = uuid + "_" + fname;
+//
+//                String localPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+//                Path fpath = Paths.get(localPath, fid);
+//
+//                try{
+//                    Files.createDirectories(fpath.getParent());
+//                    Files.copy(files[i].getInputStream(), fpath, StandardCopyOption.REPLACE_EXISTING);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                board.setFid(fid);
+//                board.setFname(fname);
+//                board.setFiles(files);
+//                board.setFpath(String.valueOf(fpath));
+//            }
+//        }
+//
+//        return boardMapper.updateBoardByNo(no,board);
+//    }
 
     public ArrayList<Integer> changeUseYN(ArrayList<Integer> no) {
         ArrayList<Integer> result = new ArrayList<>();

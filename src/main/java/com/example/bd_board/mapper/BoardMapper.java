@@ -2,6 +2,7 @@ package com.example.bd_board.mapper;
 
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.File;
 import com.example.bd_board.model.Member;
 import org.apache.ibatis.annotations.*;
 
@@ -14,6 +15,7 @@ public interface BoardMapper {
 
     int createBoard(Board board);
 
+    int createFile(File filem,Integer bno);
     Board getBoardByNo(Integer no);
 
     Board download(String fid);

@@ -2,23 +2,14 @@ package com.example.bd_board.controller;
 
 import com.example.bd_board.model.Board;
 import com.example.bd_board.model.Comment;
+import com.example.bd_board.model.File;
 import com.example.bd_board.model.Member;
 import com.example.bd_board.service.BoardService;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriUtils;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +28,13 @@ public class BoardController {
     }
 
     @PostMapping("/create_board")
-    public int createBoard(Board board) {
+    public int createBoard(@RequestBody Board board) {
         return boardService.createBoard(board);
+    }
+
+    @PostMapping("/create_file/{bno}")
+    public int createBoard(@RequestBody File file, @PathVariable Integer bno) {
+        return boardService.createFile(file, bno);
     }
 
     @GetMapping("/read_board/{no}")
@@ -51,29 +47,29 @@ public class BoardController {
         }
     }
 
-    @GetMapping("/download_file/{fid}")
-    public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
-        Board board = boardService.download(fid);
-        Path path = Paths.get(String.valueOf(board.getFpath()));
-        org.springframework.core.io.Resource resource = new InputStreamResource(Files.newInputStream(path));
-        String encodeName = UriUtils.encode(String.valueOf(board.getFname()), StandardCharsets.UTF_8);
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + encodeName + "\"")
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
-    }
+//    @GetMapping("/download_file/{fid}")
+//    public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
+//        Board board = boardService.download(fid);
+//        Path path = Paths.get(String.valueOf(board.getFpath()));
+//        org.springframework.core.io.Resource resource = new InputStreamResource(Files.newInputStream(path));
+//        String encodeName = UriUtils.encode(String.valueOf(board.getFname()), StandardCharsets.UTF_8);
+//
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + encodeName + "\"")
+//                .contentType(MediaType.parseMediaType("application/octet-stream"))
+//                .body(resource);
+//    }
 
     @PutMapping("/delete_file/{fid}")
     public int deleteFile(@PathVariable String fid) {
         return boardService.deleteFile(fid);
     }
 
-    @PutMapping("/update_board/{no}")
-
-    public int updateBoard(@PathVariable Integer no, Board board) {
-        return boardService.updateBoard(no, board);
-    }
+//    @PutMapping("/update_board/{no}")
+//
+//    public int updateBoard(@PathVariable Integer no, Board board) {
+//        return boardService.updateBoard(no, board);
+//    }
 
     @PutMapping("/change_UseYN")
     public ArrayList<Integer> changeUseYN(@RequestBody ArrayList<Integer> no) {

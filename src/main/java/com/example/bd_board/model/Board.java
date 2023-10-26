@@ -19,10 +19,4 @@ public class Board {
 
     private String type;
     private String keyword;
-
-    private MultipartFile[] files;
-    private String fid;
-    private String fname;
-    private String fpath;
-    private String fileYN;
 }
