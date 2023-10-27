@@ -6,7 +6,6 @@ import com.example.bd_board.model.File;
 import com.example.bd_board.model.Member;
 import org.apache.ibatis.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -16,6 +15,7 @@ public interface BoardMapper {
     int createBoard(Board board);
 
     int createFile(@Param("file") File file, @Param("bno") Integer bno);
+
     Board getBoardByNo(Integer no);
 
     Board download(String fid);
