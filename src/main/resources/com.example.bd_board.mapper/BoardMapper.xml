@@ -15,12 +15,6 @@
     <insert id="createBoard" parameterType="com.example.bd_board.model.Board" useGeneratedKeys="true" keyProperty="no">
         INSERT INTO board_db (title, contents, member_id)
         VALUES (#{title}, #{contents}, #{member_id});
-
-<!--        <selectKey resultType="integer" keyProperty="bno" order="AFTER">-->
-<!--            SELECT no-->
-<!--            FROM board_db-->
-<!--            WHERE no = #{no}-->
-<!--        </selectKey>-->
     </insert>
 
     <insert id="createFile" parameterType="com.example.bd_board.model.File">
