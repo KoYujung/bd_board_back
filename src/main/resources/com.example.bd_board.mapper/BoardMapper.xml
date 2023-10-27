@@ -25,7 +25,7 @@
 
     <insert id="createFile" parameterType="com.example.bd_board.model.File">
         INSERT INTO board_file (fid, fname, fpath, bno)
-        VALUES (#{fid}, #{fname}, #{fpath}, #{bno})
+        VALUES (#{file.fid}, #{file.fname}, #{file.fpath}, #{bno})
     </insert>
 
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">

@@ -33,10 +33,13 @@ public class BoardService {
 
     public int createBoard(Board board) {
         boardMapper.createBoard(board);
+
         if(!(board.getNo() == null)) {
+            boardMapper.createBoard(board);
             return board.getNo();
+        } else {
+            return boardMapper.createBoard(board);
         }
-        return boardMapper.createBoard(board);
     }
 
     public int createFile(File file, Integer bno) {

@@ -34,7 +34,7 @@ public class BoardController {
     }
 
     @PostMapping("/create_file/{bno}")
-    public int createBoard(@RequestBody File file, @PathVariable Integer bno) {
+    public int createBoard(File file, @PathVariable Integer bno) {
         return boardService.createFile(file, bno);
     }
 

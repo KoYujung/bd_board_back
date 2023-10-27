@@ -15,7 +15,7 @@ public interface BoardMapper {
 
     int createBoard(Board board);
 
-    int createFile(File file,Integer bno);
+    int createFile(@Param("file") File file, @Param("bno") Integer bno);
     Board getBoardByNo(Integer no);
 
     Board download(String fid);
