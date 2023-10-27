@@ -32,11 +32,6 @@ public class BoardController {
         return boardService.createBoard(board);
     }
 
-    @PostMapping("/create_file/{bno}")
-    public int createFile(File file, @PathVariable Integer bno) {
-        return boardService.createFile(file, bno);
-    }
-
     @GetMapping("/read_board/{no}")
     public ResponseEntity<Board> getBoardByNo(@PathVariable Integer no) throws IOException {
         Board board = boardService.getBoardByNo(no);
@@ -45,24 +40,6 @@ public class BoardController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-//    @GetMapping("/download_file/{fid}")
-//    public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable String fid) throws IOException {
-//        Board board = boardService.download(fid);
-//        Path path = Paths.get(String.valueOf(board.getFpath()));
-//        org.springframework.core.io.Resource resource = new InputStreamResource(Files.newInputStream(path));
-//        String encodeName = UriUtils.encode(String.valueOf(board.getFname()), StandardCharsets.UTF_8);
-//
-//        return ResponseEntity.ok()
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fname=\"" + encodeName + "\"")
-//                .contentType(MediaType.parseMediaType("application/octet-stream"))
-//                .body(resource);
-//    }
-
-    @PutMapping("/delete_file/{fid}")
-    public int deleteFile(@PathVariable String fid) {
-        return boardService.deleteFile(fid);
     }
 
 //    @PutMapping("/update_board/{no}")

@@ -5,6 +5,7 @@
 
 <mapper namespace="com.example.bd_board.mapper.BoardMapper">
 
+
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
@@ -26,6 +27,12 @@
         SELECT *
         FROM board_db
         WHERE no = #{no}
+    </select>
+
+    <select id="getFileByNo" parameterType="com.example.bd_board.model.File">
+        SELECT *
+        FROM board_file
+        WHERE bno = #{bno}
     </select>
 
     <select id="download" parameterType="com.example.bd_board.model.Board">
@@ -129,3 +136,4 @@
     </select>
 
 </mapper>
+

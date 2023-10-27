@@ -18,7 +18,9 @@ public interface BoardMapper {
 
     Board getBoardByNo(Integer no);
 
-    Board download(String fid);
+    File getFileByNo(Integer bno);
+
+    File download(String fid);
 
     int deleteFile(String fid);
 
