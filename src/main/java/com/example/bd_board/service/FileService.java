@@ -1,7 +1,6 @@
 package com.example.bd_board.service;
 
 import com.example.bd_board.mapper.BoardMapper;
-import com.example.bd_board.model.Board;
 import com.example.bd_board.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +47,6 @@ public class FileService {
                 }
                 file.setFid(fid);
                 file.setFname(fname);
-                file.setFiles(files);
                 file.setFpath(String.valueOf(fpath));
 
                 result+=boardMapper.createFile(file, bno);
@@ -57,7 +55,7 @@ public class FileService {
         return result;
     }
 
-    public File getFileByNo(Integer bno) throws IOException {
+    public List<File> getFileByNo(Integer bno) {
         return boardMapper.getFileByNo(bno);
     }
 

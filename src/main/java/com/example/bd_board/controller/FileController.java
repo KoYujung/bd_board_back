@@ -18,6 +18,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 public class FileController {
@@ -33,12 +35,12 @@ public class FileController {
     }
 
     @GetMapping("/read_file/{bno}")
-    public ResponseEntity<File> getFileByNo(@PathVariable Integer bno) throws IOException {
-        File file = fileService.getFileByNo(bno);
-        if(file != null) {
-            return ResponseEntity.ok(file);
+    public List<File> getFileByNo(@PathVariable Integer bno) throws IOException {
+        List<File> file = fileService.getFileByNo(bno);
+        if (!file.isEmpty()) {
+            return file;
         } else {
-            return ResponseEntity.notFound().build();
+            return Collections.emptyList();
         }
     }
 

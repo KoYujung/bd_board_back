@@ -37,12 +37,12 @@
 
     <select id="download" parameterType="com.example.bd_board.model.Board">
         SELECT *
-        FROM board_db
+        FROM board_file
         WHERE fid = #{fid}
     </select>
 
     <update id="deleteFile" parameterType="com.example.bd_board.model.Board">
-        UPDATE board_db
+        UPDATE board_file
         SET fileYN = 'N'
         WHERE fid = #{fid}
     </update>
