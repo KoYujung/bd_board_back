@@ -42,11 +42,11 @@ public class BoardController {
         }
     }
 
-//    @PutMapping("/update_board/{no}")
-//
-//    public int updateBoard(@PathVariable Integer no, Board board) {
-//        return boardService.updateBoard(no, board);
-//    }
+    @PutMapping("/update_board/{no}")
+
+    public int updateBoard(@PathVariable Integer no, Board board) {
+        return boardService.updateBoard(no, board);
+    }
 
     @PutMapping("/change_UseYN")
     public ArrayList<Integer> changeUseYN(@RequestBody ArrayList<Integer> no) {

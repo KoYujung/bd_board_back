@@ -24,7 +24,7 @@ public interface BoardMapper {
 
     int deleteFile(String fid);
 
-    int updateBoardByNo(@Param("no") Integer no, @Param("board") Board board);
+    int updateBoard(@Param("no") Integer no, @Param("board") Board board);
 
     int changeUseYN(Integer no);
 

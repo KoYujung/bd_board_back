@@ -43,7 +43,6 @@ public class FileController {
             return Collections.emptyList();
         }
     }
-
     @GetMapping("/download_file/{fid}")
     public ResponseEntity<Resource> download(@PathVariable String fid) throws IOException {
         File file = fileService.download(fid);
@@ -56,6 +55,7 @@ public class FileController {
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
     }
+
     @PutMapping("/delete_file/{fid}")
     public int deleteFile(@PathVariable String fid) {
         return fileService.deleteFile(fid);

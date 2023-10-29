@@ -54,6 +54,10 @@ public class BoardService {
         return result;
     }
 
+    public int updateBoard(Integer no, Board board) {
+        return boardMapper.updateBoard(no, board);
+    }
+
     public int deleteBoard(Integer no) {
         return boardMapper.deleteBoardByNo(no);
     }
