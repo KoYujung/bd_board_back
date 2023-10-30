@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class FileController {
     }
 
     @GetMapping("/read_file/{bno}")
-    public List<File> getFileByNo(@PathVariable Integer bno) throws IOException {
+    public List<File> getFileByNo(@PathVariable Integer bno) {
         List<File> file = fileService.getFileByNo(bno);
         if (!file.isEmpty()) {
             return file;
@@ -57,7 +58,7 @@ public class FileController {
     }
 
     @PutMapping("/delete_file/{fid}")
-    public int deleteFile(@PathVariable String fid) {
+    public ArrayList<Integer> deleteFile(@PathVariable ArrayList<String> fid) {
         return fileService.deleteFile(fid);
     }
 }

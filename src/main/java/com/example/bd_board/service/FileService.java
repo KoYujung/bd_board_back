@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -63,7 +64,12 @@ public class FileService {
         return boardMapper.download(fid);
     }
 
-    public int deleteFile(String fid) {
-        return boardMapper.deleteFile(fid);
+    public ArrayList<Integer> deleteFile(ArrayList<String> fid) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for(int i = 0; i < fid.size(); i ++) {
+            result.add(boardMapper.deleteFile(fid.get(i)));
+        }
+        return result;
     }
 }

@@ -26,24 +26,24 @@
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
-        WHERE no = #{no}
+        WHERE no = #{no} AND useYN IN ('Y')
     </select>
 
     <select id="getFileByNo" parameterType="com.example.bd_board.model.File">
         SELECT *
         FROM board_file
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} AND useYN IN ('Y')
     </select>
 
     <select id="download" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_file
-        WHERE fid = #{fid}
+        WHERE fid = #{fid} AND useYN IN ('Y')
     </select>
 
     <update id="deleteFile" parameterType="com.example.bd_board.model.Board">
         UPDATE board_file
-        SET fileYN = 'N'
+        SET useYN = 'N'
         WHERE fid = #{fid}
     </update>
 

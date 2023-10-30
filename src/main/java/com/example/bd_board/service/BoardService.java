@@ -41,7 +41,7 @@ public class BoardService {
         }
     }
 
-    public Board getBoardByNo(Integer no) throws IOException {
+    public Board getBoardByNo(Integer no) {
         return boardMapper.getBoardByNo(no);
     }
 

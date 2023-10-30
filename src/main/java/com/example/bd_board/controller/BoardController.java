@@ -43,7 +43,6 @@ public class BoardController {
     }
 
     @PutMapping("/update_board/{no}")
-
     public int updateBoard(@PathVariable Integer no, Board board) {
         return boardService.updateBoard(no, board);
     }
