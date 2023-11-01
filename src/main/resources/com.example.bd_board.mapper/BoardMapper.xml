@@ -66,20 +66,19 @@
     </delete>
 
     <select id="searchBoard" resultType="com.example.bd_board.model.Board" parameterType="map">
-        <choose>
-            <when test="type == 'title'">
-                SELECT * FROM board_db WHERE title LIKE CONCAT('%', #{keyword}, '%') AND useYN IN ('Y')
-            </when>
-            <when test="type == 'member_id'">
-                SELECT * FROM board_db WHERE member_id LIKE CONCAT('%', #{keyword}, '%') AND useYN IN ('Y')
-            </when>
-            <when test="type == 'content'">
-                SELECT * FROM board_db WHERE contents LIKE CONCAT('%', #{keyword}, '%') AND useYN IN ('Y')
-            </when>
-            <otherwise>
-                SELECT null
-            </otherwise>
-        </choose>
+        SELECT *
+        FROM board_db
+        WHERE useYN IN ('Y')
+        <if test="type == 'title'">
+            AND title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'member_id'">
+            AND member_id LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            AND contents LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        ORDER BY no DESC
     </select>
 
     <insert id="addComment" parameterType="com.example.bd_board.model.Comment">
