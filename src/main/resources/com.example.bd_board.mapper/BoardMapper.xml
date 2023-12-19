@@ -9,7 +9,7 @@
     <select id="selectAll" resultType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
-        WHERE useYN IN ('Y')
+        WHERE useYN = ('Y')
         ORDER BY no DESC
     </select>
 
@@ -26,19 +26,19 @@
     <select id="getBoardByNo" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_db
-        WHERE no = #{no} AND useYN IN ('Y')
+        WHERE no = #{no} AND useYN = ('Y')
     </select>
 
     <select id="getFileByNo" parameterType="com.example.bd_board.model.File">
         SELECT *
         FROM board_file
-        WHERE bno = #{bno} AND useYN IN ('Y')
+        WHERE bno = #{bno} AND useYN = ('Y')
     </select>
 
     <select id="download" parameterType="com.example.bd_board.model.Board">
         SELECT *
         FROM board_file
-        WHERE fid = #{fid} AND useYN IN ('Y')
+        WHERE fid = #{fid} AND useYN = ('Y')
     </select>
 
     <update id="deleteFile" parameterType="com.example.bd_board.model.Board">
@@ -68,7 +68,7 @@
     <select id="searchBoard" resultType="com.example.bd_board.model.Board" parameterType="map">
         SELECT *
         FROM board_db
-        WHERE useYN IN ('Y')
+        WHERE useYN = ('Y')
         <if test="type == 'title'">
             AND title LIKE CONCAT('%', #{keyword}, '%')
         </if>
@@ -89,7 +89,7 @@
     <select id="getComment" resultType="com.example.bd_board.model.Comment" parameterType="map">
         SELECT *
         FROM board_comment
-        WHERE bno = #{bno} AND useYN IN ('Y')
+        WHERE bno = #{bno} AND useYN = ('Y')
     </select>
 
     <update id="delComment" parameterType="com.example.bd_board.model.Comment">
@@ -101,7 +101,7 @@
     <select id="countComment" resultType="Integer">
         SELECT COUNT(*)
         FROM board_comment
-        WHERE bno = #{bno} AND useYN IN ('Y')
+        WHERE bno = #{bno} AND useYN = ('Y')
     </select>
 
     <update id="addView" parameterType="com.example.bd_board.model.Board">
@@ -113,7 +113,7 @@
     <select id="getTop4Boards">
         SELECT *
         FROM board_db
-        WHERE useYN IN ('Y')
+        WHERE useYN = ('Y')
         ORDER BY view DESC
         LIMIT 4
     </select>
